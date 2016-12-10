@@ -1,6 +1,20 @@
 {
   "name": "react-native-global-props",
+  "description": "A simple javascript implementation to add custom, default props to react-native components.",
   "version": "1.0.6",
+  "author": {
+    "name": "Andrew L. Jackson",
+    "url": "https://github.com/Ajackster"
+  },
+  "bugs": {
+    "url": "https://github.com/Ajackster/react-native-global-props/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/Ajackster/react-native-global-props/blob/master/LICENSE"
+    }
+  ],
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
@@ -25,5 +39,13 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "keywords": [
+    "global",
+    "props",
+    "font",
+    "style",
+    "components",
+    "react-native"
+  ]
 }
