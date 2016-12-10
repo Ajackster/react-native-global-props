@@ -1,14 +1,14 @@
 # react-native-global-props
 A simple javascript implementation to add custom, default props to react-native components.
 
-## Ever wish you could set global styles that would apply to react-native components like in CSS?
+Ever wish you could set global styles that would apply to react-native components like in CSS?
 ```css
 body {
     background-color: 'teal'
 }
 p {
-    fontSize: 12,
-    fontFamily: 'Helvetica Neue'
+    font-size: 12,
+    font-family: 'Helvetica Neue'
 }
 ```
 or get rid of that ugly line at the bottom of every `TextInput` in Android?
