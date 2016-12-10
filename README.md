@@ -145,10 +145,18 @@ export default App;
 ```
 
 And this is the result
+
 ![react-native-global-props demo](http://i.giphy.com/2cpQ18KG8L3fa.gif)
 
 This module is useful for,
-    1.) Creating an amazing modular experience with your react-native components
-    2.) Adding customization to react-native components without having to create completely new ones
-    3.) Setting global styles like fontFamily and color
+
+    # 1.)
+     Creating an amazing modular experience with your react-native components
+
+    # 2.)
+     Adding customization to react-native components without having to create completely new ones
+
+    # 3.)
+     Setting global styles like fontFamily and color
+
     And much more!
