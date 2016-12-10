@@ -10,6 +10,7 @@
     "type": "git",
     "url": "https://github.com/Ajackster/react-native-global-props"
   },
+  "main": "./src",
   "dependencies": {
     "react": "15.4.1",
     "react-native": "0.39.1"
