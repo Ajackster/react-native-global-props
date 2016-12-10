@@ -1,5 +1,5 @@
 # react-native-global-props
-A simple javascript implementation to add custom, default props to react-native components.
+#### A simple javascript implementation to add custom, default props to react-native components.
 
 Ever wish you could set global styles that would apply to react-native components like in CSS?
 ```css
