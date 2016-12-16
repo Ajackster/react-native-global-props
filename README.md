@@ -24,7 +24,7 @@ or get rid of that ugly line at the bottom of every `TextInput` in Android?
 npm i react-native-global-props --save
 ```
 ### How to use
-__The source code can be found under `example/`.__
+__The example source code can be found under `example/`.__
 
 Once you've installed react-native-global-props, go ahead choose which components you want to add custom props to.
 In my example, I want to customize the `View`, `TextInput`, `Text`, `Image`, and `TouchableOpacity`.
