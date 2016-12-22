@@ -1,9 +1,9 @@
-# react-native-global-props
+# react-native-global-props #
 A simple javascript implementation to add custom, default props to react-native components.
 
 
 
-#### Ever wish you could set global styles that would apply to react-native components like in CSS?
+#### Ever wish you could set global styles that would apply to react-native components like in CSS? ####
 ```css
 body {
     background-color: 'teal'
@@ -19,11 +19,11 @@ or get rid of that ugly line at the bottom of every `TextInput` in Android?
 
 ## BLEGH! Now you can!
 
-### Installation
+### Installation ###
 ```bash
 npm i react-native-global-props --save
 ```
-### How to use
+### How to use ###
 __The example source code can be found under `example/`.__
 
 Once you've installed react-native-global-props, go ahead choose which components you want to add custom props to.
@@ -93,7 +93,7 @@ setCustomTouchableOpacity(customTouchableOpacityProps);
 ```
 And __Voila__, your react-native components will have these certain props wherever you use them.
 
-Here is an example of me using the components and overriding props. __The below source code can be found in `example/src/App.js`__
+Here is an example of me using the components and overriding props. __The below example source code can be found in `example/src/App.js`__
 ```js
 import React from 'react';
 import {
@@ -150,12 +150,40 @@ And this is the result
 
 ![react-native-global-props demo](http://i.giphy.com/2cpQ18KG8L3fa.gif)
 
-This module is useful for
+#### This module is useful for ####
 
-    1.) Creating an amazing modular experience with your react-native components
+__1.)__ Creating an amazing modular experience with your react-native components
 
-    2.) Adding customization to react-native components without having to create completely new ones
+__2.)__ Adding customization to react-native components without having to create completely new ones
 
-    3.) Setting global styles like fontFamily and color
+__3.)__ Setting global styles like fontFamily and color
 
-    And much more!
+And much more!
+
+### Contributing ###
+
+__Please contribute!__
+All contributions are greatly appreciated no matter how small or large the contribution is.
+Whether it's a small grammar fix in the README, a huge bug fix, or just an issue report, you will be recognized as a 'Contributor' to this project.
+
+Some great contributions would be to add customization for the components that currently aren't implemented.
+The following components __have__ been implemented.
+* Image
+* ListView
+* Modal
+* Picker
+* Refresh Control
+* ScrollView
+* Slider
+* StatusBar
+* Switch
+* Text
+* TextInput
+* TouchableWithoutFeedback
+* TouchableOpacity
+* TouchableHighlight
+* TouchableNativeFeedback
+* View
+* WebView
+
+If you have any questions that can't be answered in the __Issues__ forum under this repository, then feel free to email me at jacksonal300@gmail.com.
