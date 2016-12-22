@@ -1,7 +1,7 @@
 {
   "name": "react-native-global-props",
   "description": "A simple javascript implementation to add custom, default props to react-native components.",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": {
     "name": "Andrew L. Jackson",
     "url": "https://github.com/Ajackster"
