@@ -17,6 +17,8 @@ import {
   setCustomTouchableWithoutFeedback,
   setCustomTouchableOpacity
 } from './CustomFunctions/setCustomTouchable';
+import { setCustomKeyboardAvoidingView } from './CustomFunctions/setCustomKeyboardAvoidingView';
+import { setCustomActivityIndicator } from './CustomFunctions/setCustomActivityIndicator';
 
 export {
   setCustomImage,
@@ -35,5 +37,7 @@ export {
   setCustomTouchableHighlight,
   setCustomTouchableNativeFeedback,
   setCustomTouchableWithoutFeedback,
-  setCustomTouchableOpacity
+  setCustomTouchableOpacity,
+  setCustomKeyboardAvoidingView,
+  setCustomActivityIndicator
 }
