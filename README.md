@@ -185,5 +185,7 @@ The following components __have__ been implemented.
 * TouchableNativeFeedback
 * View
 * WebView
+* KeyboardAvoidingView
+* ActivityIndicator
 
 If you have any questions that can't be answered in the __Issues__ forum under this repository, then feel free to email me at jacksonal300@gmail.com.
