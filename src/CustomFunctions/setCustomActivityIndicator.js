@@ -1,12 +1,17 @@
 import { ActivityIndicator } from 'react-native';
 
 export const setCustomActivityIndicator = customProps => {
-  const activityIndicatorRender = ActivityIndicator.prototype.render;
+  const ActivityIndicatorRender = ActivityIndicator.prototype.render;
+  const initialDefaultProps = ActivityIndicator.prototype.constructor.defaultProps;
+  ActivityIndicator.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   ActivityIndicator.prototype.render = function render() {
     let oldProps = this.props;
-    this.props = { ...customProps, ...this.props };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return activityIndicatorRender.apply(this, arguments);
+      return ActivityIndicatorRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }

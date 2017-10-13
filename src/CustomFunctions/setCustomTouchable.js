@@ -4,14 +4,20 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity
 } from 'react-native';
+import { setGlobalPropsForComponent } from '../utils';
 
 export const setCustomTouchableHighlight = customProps => {
-  const touchableHighlightRender = TouchableHighlight.prototype.render;
+  const TouchableHighlightRender = TouchableHighlight.prototype.render;
+  const initialDefaultProps = TouchableHighlight.prototype.constructor.defaultProps;
+  TouchableHighlight.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   TouchableHighlight.prototype.render = function render() {
     let oldProps = this.props;
-    this.props = { ...customProps, ...this.props, style: [customProps.style, this.props.style] };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return touchableHighlightRender.apply(this, arguments);
+      return TouchableHighlightRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }
@@ -19,12 +25,17 @@ export const setCustomTouchableHighlight = customProps => {
 };
 
 export const setCustomTouchableNativeFeedback = customProps => {
-  const touchableNativeFeedbackRender = TouchableNativeFeedback.prototype.render;
+  const TouchableNativeFeedbackRender = TouchableNativeFeedback.prototype.render;
+  const initialDefaultProps = TouchableNativeFeedback.prototype.constructor.defaultProps;
+  TouchableNativeFeedback.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   TouchableNativeFeedback.prototype.render = function render() {
     let oldProps = this.props;
-    this.props = { ...customProps, ...this.props, style: [customProps.style, this.props.style] };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return touchableNativeFeedbackRender.apply(this, arguments);
+      return TouchableNativeFeedbackRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }
@@ -32,12 +43,17 @@ export const setCustomTouchableNativeFeedback = customProps => {
 };
 
 export const setCustomTouchableWithoutFeedback = customProps => {
-  const touchableWithoutFeedbackRender = TouchableWithoutFeedback.prototype.render;
+  const TouchableWithoutFeedbackRender = TouchableWithoutFeedback.prototype.render;
+  const initialDefaultProps = TouchableWithoutFeedback.prototype.constructor.defaultProps;
+  TouchableWithoutFeedback.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   TouchableWithoutFeedback.prototype.render = function render() {
     let oldProps = this.props;
-    this.props = { ...customProps, ...this.props, style: [customProps.style, this.props.style] };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return touchableWithoutFeedbackRender.apply(this, arguments);
+      return TouchableWithoutFeedbackRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }
@@ -45,12 +61,17 @@ export const setCustomTouchableWithoutFeedback = customProps => {
 };
 
 export const setCustomTouchableOpacity = customProps => {
-  const touchableOpacityRender = TouchableOpacity.prototype.render;
+  const TouchableOpacityRender = TouchableOpacity.prototype.render;
+  const initialDefaultProps = TouchableOpacity.prototype.constructor.defaultProps;
+  TouchableOpacity.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   TouchableOpacity.prototype.render = function render() {
     let oldProps = this.props;
-    this.props = { ...customProps, style: [customProps.style, this.props.style], ...this.props };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return touchableOpacityRender.apply(this, arguments);
+      return TouchableOpacityRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }

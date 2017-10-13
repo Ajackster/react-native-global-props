@@ -3,20 +3,17 @@ import {
 } from 'react-native';
 
 export const setCustomText = customProps => {
-  const textRender = Text.prototype.render;
-  const defaultProps = Text.defaultProps;
+  const TextRender = Text.prototype.render;
+  const initialDefaultProps = Text.prototype.constructor.defaultProps;
+  Text.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   Text.prototype.render = function render() {
     let oldProps = this.props;
-    let defaultPropsOverride = {};
-    Object.entries(customProps).forEach( entry => {
-      const [k, v] = entry;
-      if(oldProps[k] === defaultProps[k]) {
-        defaultPropsOverride[k] = v;
-      }
-    });
-    this.props = { ...customProps, ...this.props, ...defaultPropsOverride, style: [customProps.style, this.props.style] };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return textRender.apply(this, arguments);
+      return TextRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }

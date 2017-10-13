@@ -3,12 +3,17 @@ import {
 } from 'react-native';
 
 export const setCustomListView = customProps => {
-  const listViewRender = ListView.prototype.render;
+  const ListViewRender = ListView.prototype.render;
+  const initialDefaultProps = ListView.prototype.constructor.defaultProps;
+  ListView.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   ListView.prototype.render = function render() {
     let oldProps = this.props;
-    this.props = { ...customProps, ...this.props, style: [customProps.style, this.props.style] };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return listViewRender.apply(this, arguments);
+      return ListViewRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }

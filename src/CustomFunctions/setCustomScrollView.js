@@ -3,12 +3,17 @@ import {
 } from 'react-native';
 
 export const setCustomScrollView = customProps => {
-  const scrollViewRender = ScrollView.prototype.render;
+  const ScrollViewRender = ScrollView.prototype.render;
+  const initialDefaultProps = ScrollView.prototype.constructor.defaultProps;
+  ScrollView.prototype.constructor.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps,
+  }
   ScrollView.prototype.render = function render() {
     let oldProps = this.props;
-    this.props = { ...customProps, ...this.props, style: [customProps.style, this.props.style] };
+    this.props = { ...this.props, style: [customProps.style, this.props.style] };
     try {
-      return scrollViewRender.apply(this, arguments);
+      return ScrollViewRender.apply(this, arguments);
     } finally {
       this.props = oldProps;
     }
