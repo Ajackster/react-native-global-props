@@ -4,7 +4,6 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity
 } from 'react-native';
-import { setGlobalPropsForComponent } from '../utils';
 
 export const setCustomTouchableHighlight = customProps => {
   const TouchableHighlightRender = TouchableHighlight.prototype.render;
