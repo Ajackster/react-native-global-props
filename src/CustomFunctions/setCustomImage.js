@@ -1,21 +1,19 @@
-import {
-  Image
-} from 'react-native';
+import { Image } from 'react-native'
 
 export const setCustomImage = customProps => {
-  const ImageRender = Image.prototype.render;
-  const initialDefaultProps = Image.prototype.constructor.defaultProps;
-  Image.prototype.constructor.defaultProps = {
+  const ImageRender = Image.render
+  const initialDefaultProps = Image.defaultProps
+  Image.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  Image.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  Image.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return ImageRender.apply(this, arguments);
+      return ImageRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

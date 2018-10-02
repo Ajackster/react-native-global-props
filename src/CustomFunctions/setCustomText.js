@@ -1,21 +1,19 @@
-import {
-  Text,
-} from 'react-native';
+import { Text } from 'react-native'
 
 export const setCustomText = customProps => {
-  const TextRender = Text.prototype.render;
-  const initialDefaultProps = Text.prototype.constructor.defaultProps;
-  Text.prototype.constructor.defaultProps = {
+  const TextRender = Text.render
+  const initialDefaultProps = Text.defaultProps
+  Text.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  Text.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  Text.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return TextRender.apply(this, arguments);
+      return TextRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

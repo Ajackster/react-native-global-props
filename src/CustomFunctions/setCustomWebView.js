@@ -3,19 +3,19 @@ import {
 } from 'react-native';
 
 export const setCustomWebView = customProps => {
-  const WebViewRender = WebView.prototype.render;
-  const initialDefaultProps = WebView.prototype.constructor.defaultProps;
-  WebView.prototype.constructor.defaultProps = {
+  const WebViewRender = WebView.render
+  const initialDefaultProps = WebView.defaultProps
+  WebView.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  WebView.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  WebView.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return WebViewRender.apply(this, arguments);
+      return WebViewRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

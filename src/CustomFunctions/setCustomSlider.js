@@ -1,21 +1,19 @@
-import {
-  Slider
-} from 'react-native';
+import { Slider } from 'react-native'
 
 export const setCustomSlider = customProps => {
-  const SliderRender = Slider.prototype.render;
-  const initialDefaultProps = Slider.prototype.constructor.defaultProps;
-  Slider.prototype.constructor.defaultProps = {
+  const SliderRender = Slider.render
+  const initialDefaultProps = Slider.defaultProps
+  Slider.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  Slider.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  Slider.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return SliderRender.apply(this, arguments);
+      return SliderRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

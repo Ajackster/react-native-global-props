@@ -1,21 +1,19 @@
-import {
-  ListView
-} from 'react-native';
+import { ListView } from 'react-native'
 
 export const setCustomListView = customProps => {
-  const ListViewRender = ListView.prototype.render;
-  const initialDefaultProps = ListView.prototype.constructor.defaultProps;
-  ListView.prototype.constructor.defaultProps = {
+  const ListViewRender = ListView.render
+  const initialDefaultProps = ListView.defaultProps
+  ListView.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  ListView.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  ListView.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return ListViewRender.apply(this, arguments);
+      return ListViewRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}
