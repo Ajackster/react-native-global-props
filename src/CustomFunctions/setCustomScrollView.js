@@ -1,21 +1,19 @@
-import {
-  ScrollView
-} from 'react-native';
+import { ScrollView } from 'react-native'
 
 export const setCustomScrollView = customProps => {
-  const ScrollViewRender = ScrollView.prototype.render;
-  const initialDefaultProps = ScrollView.prototype.constructor.defaultProps;
-  ScrollView.prototype.constructor.defaultProps = {
+  const ScrollViewRender = ScrollView.render
+  const initialDefaultProps = ScrollView.defaultProps
+  ScrollView.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  ScrollView.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  ScrollView.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return ScrollViewRender.apply(this, arguments);
+      return ScrollViewRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

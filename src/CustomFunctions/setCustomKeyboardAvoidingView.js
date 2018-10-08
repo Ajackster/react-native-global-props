@@ -1,19 +1,19 @@
-import { KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native'
 
 export const setCustomKeyboardAvoidingView = customProps => {
-  const KeyboardAvoidingViewRender = KeyboardAvoidingView.prototype.render;
-  const initialDefaultProps = KeyboardAvoidingView.prototype.constructor.defaultProps;
-  KeyboardAvoidingView.prototype.constructor.defaultProps = {
+  const KeyboardAvoidingViewRender = KeyboardAvoidingView.render
+  const initialDefaultProps = KeyboardAvoidingView.defaultProps
+  KeyboardAvoidingView.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  KeyboardAvoidingView.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  KeyboardAvoidingView.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return KeyboardAvoidingViewRender.apply(this, arguments);
+      return KeyboardAvoidingViewRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

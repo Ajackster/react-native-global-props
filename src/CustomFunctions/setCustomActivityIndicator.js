@@ -1,19 +1,19 @@
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native'
 
 export const setCustomActivityIndicator = customProps => {
-  const ActivityIndicatorRender = ActivityIndicator.prototype.render;
-  const initialDefaultProps = ActivityIndicator.prototype.constructor.defaultProps;
-  ActivityIndicator.prototype.constructor.defaultProps = {
+  const ActivityIndicatorRender = ActivityIndicator.render
+  const initialDefaultProps = ActivityIndicator.defaultProps
+  ActivityIndicator.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  ActivityIndicator.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  ActivityIndicator.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return ActivityIndicatorRender.apply(this, arguments);
+      return ActivityIndicatorRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

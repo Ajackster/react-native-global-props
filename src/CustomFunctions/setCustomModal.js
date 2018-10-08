@@ -1,21 +1,19 @@
-import {
-  Modal
-} from 'react-native';
+import { Modal } from 'react-native'
 
 export const setCustomModal = customProps => {
-  const ModalRender = Modal.prototype.render;
-  const initialDefaultProps = Modal.prototype.constructor.defaultProps;
-  Modal.prototype.constructor.defaultProps = {
+  const ModalRender = Modal.render
+  const initialDefaultProps = Modal.defaultProps
+  Modal.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  Modal.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  Modal.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return ModalRender.apply(this, arguments);
+      return ModalRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

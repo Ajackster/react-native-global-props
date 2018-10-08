@@ -3,19 +3,19 @@ import {
 } from 'react-native';
 
 export const setCustomView = customProps => {
-  const ViewRender = View.prototype.render;
-  const initialDefaultProps = View.prototype.constructor.defaultProps;
-  View.prototype.constructor.defaultProps = {
+  const ViewRender = View.render
+  const initialDefaultProps = View.defaultProps
+  View.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  View.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  View.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return ViewRender.apply(this, arguments);
+      return ViewRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

@@ -1,21 +1,19 @@
-import {
-  Switch
-} from 'react-native';
+import { Switch } from 'react-native'
 
 export const setCustomSwitch = customProps => {
-  const SwitchRender = Switch.prototype.render;
-  const initialDefaultProps = Switch.prototype.constructor.defaultProps;
-  Switch.prototype.constructor.defaultProps = {
+  const SwitchRender = Switch.render
+  const initialDefaultProps = Switch.defaultProps
+  Switch.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  Switch.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  Switch.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return SwitchRender.apply(this, arguments);
+      return SwitchRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

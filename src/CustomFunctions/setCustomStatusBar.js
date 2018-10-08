@@ -1,21 +1,19 @@
-import {
-  StatusBar
-} from 'react-native';
+import { StatusBar } from 'react-native'
 
 export const setCustomStatusBar = customProps => {
-  const StatusBarRender = StatusBar.prototype.render;
-  const initialDefaultProps = StatusBar.prototype.constructor.defaultProps;
-  StatusBar.prototype.constructor.defaultProps = {
+  const StatusBarRender = StatusBar.render
+  const initialDefaultProps = StatusBar.defaultProps
+  StatusBar.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  StatusBar.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  StatusBar.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return StatusBarRender.apply(this, arguments);
+      return StatusBarRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

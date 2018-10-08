@@ -1,21 +1,19 @@
-import {
-  TextInput
-} from 'react-native';
+import { TextInput } from 'react-native'
 
 export const setCustomTextInput = customProps => {
-  const TextInputRender = TextInput.prototype.render;
-  const initialDefaultProps = TextInput.prototype.constructor.defaultProps;
-  TextInput.prototype.constructor.defaultProps = {
+  const TextInputRender = TextInput.render
+  const initialDefaultProps = TextInput.defaultProps
+  TextInput.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  TextInput.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  TextInput.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return TextInputRender.apply(this, arguments);
+      return TextInputRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}

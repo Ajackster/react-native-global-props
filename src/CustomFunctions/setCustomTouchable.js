@@ -5,74 +5,71 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export const setCustomTouchableHighlight = customProps => {
-  const TouchableHighlightRender = TouchableHighlight.prototype.render;
-  const initialDefaultProps = TouchableHighlight.prototype.constructor.defaultProps;
-  TouchableHighlight.prototype.constructor.defaultProps = {
-    ...initialDefaultProps,
-    ...customProps,
-  }
-  TouchableHighlight.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
-    try {
-      return TouchableHighlightRender.apply(this, arguments);
-    } finally {
-      this.props = oldProps;
-    }
-  };
-};
-
 export const setCustomTouchableNativeFeedback = customProps => {
-  const TouchableNativeFeedbackRender = TouchableNativeFeedback.prototype.render;
-  const initialDefaultProps = TouchableNativeFeedback.prototype.constructor.defaultProps;
-  TouchableNativeFeedback.prototype.constructor.defaultProps = {
+  const TouchableNativeFeedbackRender = TouchableNativeFeedback.render
+  const initialDefaultProps = TouchableNativeFeedback.defaultProps
+  TouchableNativeFeedback.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  TouchableNativeFeedback.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  TouchableNativeFeedback.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return TouchableNativeFeedbackRender.apply(this, arguments);
+      return TouchableNativeFeedbackRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
-
+  }
+}
 export const setCustomTouchableWithoutFeedback = customProps => {
-  const TouchableWithoutFeedbackRender = TouchableWithoutFeedback.prototype.render;
-  const initialDefaultProps = TouchableWithoutFeedback.prototype.constructor.defaultProps;
-  TouchableWithoutFeedback.prototype.constructor.defaultProps = {
+  const TouchableWithoutFeedbackRender = TouchableWithoutFeedback.render
+  const initialDefaultProps = TouchableWithoutFeedback.defaultProps
+  TouchableWithoutFeedback.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  TouchableWithoutFeedback.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  TouchableWithoutFeedback.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return TouchableWithoutFeedbackRender.apply(this, arguments);
+      return TouchableWithoutFeedbackRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
-
+  }
+}
 export const setCustomTouchableOpacity = customProps => {
-  const TouchableOpacityRender = TouchableOpacity.prototype.render;
-  const initialDefaultProps = TouchableOpacity.prototype.constructor.defaultProps;
-  TouchableOpacity.prototype.constructor.defaultProps = {
+  const TouchableOpacityRender = TouchableOpacity.render
+  const initialDefaultProps = TouchableOpacity.defaultProps
+  TouchableOpacity.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  TouchableOpacity.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  TouchableOpacity.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return TouchableOpacityRender.apply(this, arguments);
+      return TouchableOpacityRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}
+export const setCustomTouchableHighlight = customProps => {
+  const TouchableHighlightRender = TouchableHighlight.render
+  const initialDefaultProps = TouchableHighlight.defaultProps
+  TouchableHighlight.defaultProps = {
+    ...initialDefaultProps,
+    ...customProps
+  }
+  TouchableHighlight.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
+    try {
+      return TouchableHighlightRender.apply(this, arguments)
+    } finally {
+      props = oldProps
+    }
+  }
+}

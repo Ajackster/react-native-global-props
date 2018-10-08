@@ -1,21 +1,19 @@
-import {
-  RefreshControl
-} from 'react-native';
+import { RefreshControl } from 'react-native'
 
 export const setCustomRefreshControl = customProps => {
-  const RefreshControlRender = RefreshControl.prototype.render;
-  const initialDefaultProps = RefreshControl.prototype.constructor.defaultProps;
-  RefreshControl.prototype.constructor.defaultProps = {
+  const RefreshControlRender = RefreshControl.render
+  const initialDefaultProps = RefreshControl.defaultProps
+  RefreshControl.defaultProps = {
     ...initialDefaultProps,
-    ...customProps,
+    ...customProps
   }
-  RefreshControl.prototype.render = function render() {
-    let oldProps = this.props;
-    this.props = { ...this.props, style: [customProps.style, this.props.style] };
+  RefreshControl.render = function render(props) {
+    let oldProps = props
+    props = { ...props, style: [customProps.style, props.style] }
     try {
-      return RefreshControlRender.apply(this, arguments);
+      return RefreshControlRender.apply(this, arguments)
     } finally {
-      this.props = oldProps;
+      props = oldProps
     }
-  };
-};
+  }
+}
