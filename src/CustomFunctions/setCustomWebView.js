@@ -1,6 +1,5 @@
-import {
-  WebView
-} from 'react-native';
+import { WebView } from 'react-native';
+import extractProps from './extractProps';
 
 export const setCustomWebView = customProps => {
   const WebViewRender = WebView.render
@@ -11,7 +10,10 @@ export const setCustomWebView = customProps => {
   }
   WebView.render = function render(props) {
     let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
+    props = { ...props, style: [customProps.style] }
+
+    props = extractProps(props, oldProps)
+
     try {
       return WebViewRender.apply(this, arguments)
     } finally {

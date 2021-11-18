@@ -1,4 +1,5 @@
 import { RefreshControl } from 'react-native'
+import extractProps from './extractProps'
 
 export const setCustomRefreshControl = customProps => {
   const RefreshControlRender = RefreshControl.render
@@ -9,7 +10,10 @@ export const setCustomRefreshControl = customProps => {
   }
   RefreshControl.render = function render(props) {
     let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
+    props = { ...props, style: [customProps.style] }
+
+    props = extractProps(props, oldProps)
+
     try {
       return RefreshControlRender.apply(this, arguments)
     } finally {
