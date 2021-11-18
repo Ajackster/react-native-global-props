@@ -1,4 +1,5 @@
 import { TextInput } from 'react-native'
+import extractProps from './extractProps'
 
 export const setCustomTextInput = customProps => {
   const TextInputRender = TextInput.render
@@ -9,7 +10,10 @@ export const setCustomTextInput = customProps => {
   }
   TextInput.render = function render(props) {
     let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
+    props = { ...props, style: [customProps.style] }
+
+    props = extractProps(props, oldProps)
+
     try {
       return TextInputRender.apply(this, arguments)
     } finally {

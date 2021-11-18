@@ -4,6 +4,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity
 } from 'react-native';
+import extractProps from './extractProps';
 
 export const setCustomTouchableNativeFeedback = customProps => {
   const TouchableNativeFeedbackRender = TouchableNativeFeedback.render
@@ -14,7 +15,10 @@ export const setCustomTouchableNativeFeedback = customProps => {
   }
   TouchableNativeFeedback.render = function render(props) {
     let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
+    props = { ...props, style: [customProps.style] }
+
+    props = extractProps(props, oldProps)
+
     try {
       return TouchableNativeFeedbackRender.apply(this, arguments)
     } finally {
@@ -31,7 +35,10 @@ export const setCustomTouchableWithoutFeedback = customProps => {
   }
   TouchableWithoutFeedback.render = function render(props) {
     let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
+    props = { ...props, style: [customProps.style] }
+
+    props = extractProps(props, oldProps)
+
     try {
       return TouchableWithoutFeedbackRender.apply(this, arguments)
     } finally {
@@ -48,7 +55,10 @@ export const setCustomTouchableOpacity = customProps => {
   }
   TouchableOpacity.render = function render(props) {
     let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
+    props = { ...props, style: [customProps.style] }
+
+    props = extractProps(props, oldProps)
+
     try {
       return TouchableOpacityRender.apply(this, arguments)
     } finally {
@@ -65,7 +75,10 @@ export const setCustomTouchableHighlight = customProps => {
   }
   TouchableHighlight.render = function render(props) {
     let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
+    props = { ...props, style: [customProps.style] }
+
+    props = extractProps(props, oldProps)
+
     try {
       return TouchableHighlightRender.apply(this, arguments)
     } finally {
